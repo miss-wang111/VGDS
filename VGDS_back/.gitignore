@@ -1,0 +1,10 @@
+#analyzeData/
+__pycache__/
+env/
+utils/__pycache__/
+node_modules/
+pic1.png
+heatmap.png
+pic2.png
+volcano.png
+.idea/
