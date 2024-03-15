@@ -1,4 +1,4 @@
-setwd("D:/²îÒì·ÖÎö")
+setwd("D:/å·®å¼‚åˆ†æ")
 
 if (!requireNamespace("BiocManager", quietly = TRUE))   
   install.packages("BiocManager")
@@ -7,20 +7,20 @@ BiocManager::install("edgeR")
 
 library("limma")
 library("edgeR")
-setwd("D:/ÍøÕ¾Êı¾İÊÕ¼¯/¸Î°©¸´·¢Êı¾İ/GSE101432/Èë¿âÊı¾İ/»ğÉ½Í¼")
+setwd("D:/ç½‘ç«™æ•°æ®æ”¶é›†/è‚ç™Œå¤å‘æ•°æ®/GSE101432/å…¥åº“æ•°æ®/ç«å±±å›¾")
 
 
-###############ÎÄ¼şµ¼Èë############
-rt=read.table("¸´·¢VSÔ­·¢.txt",sep="\t",header=T,check.names=F)  #¸Ä³É×Ô¼ºµÄÎÄ¼şÃû
+###############æ–‡ä»¶å¯¼å…¥############
+rt=read.table("å¤å‘VSåŸå‘.txt",sep="\t",header=T,check.names=F)  #æ”¹æˆè‡ªå·±çš„æ–‡ä»¶å
 rt=as.matrix(rt)
-rownames(rt)=rt[,1]#È¡µÚÒ»ÁĞ×÷ÎªĞĞÃû
-exp=rt[,2:ncol(rt)]#µÚ¶şÁĞµ½×îºóÒ»ÁĞÊÇ±í´ïµÄÊı¾İ#
+rownames(rt)=rt[,1]#å–ç¬¬ä¸€åˆ—ä½œä¸ºè¡Œå
+exp=rt[,2:ncol(rt)]#ç¬¬äºŒåˆ—åˆ°æœ€åä¸€åˆ—æ˜¯è¡¨è¾¾çš„æ•°æ®#
 
-dimnames=list(rownames(exp),colnames(exp))#È¡³öĞĞÃûºÍÁĞÃû
-data=matrix(as.numeric(as.matrix(exp)),nrow=nrow(exp),dimnames=dimnames)#½«´øÒıºÅµÄÊı¾İ×ª»»³ÉÊıÖµ
-data=avereps(data)#ÓĞµÄ»ùÒò³öÏÖ¹ı¶àĞĞ£¬°Ñ³öÏÖ¶àĞĞµÄgeneÈ¡Æ½¾ùÖµ#
-data=data[rowMeans(data)>1,] #È¥³ıµÍ±í´ïµÄÊı¾İ#
-#write.csv(data,"D:/ÍøÕ¾Êı¾İÊÕ¼¯/¸Î°©¸´·¢Êı¾İ/GSE56545/¸´·¢VSÁÚ½ü/É¾³ıµÍ±í´ï.csv",quote = F)
+dimnames=list(rownames(exp),colnames(exp))#å–å‡ºè¡Œåå’Œåˆ—å
+data=matrix(as.numeric(as.matrix(exp)),nrow=nrow(exp),dimnames=dimnames)#å°†å¸¦å¼•å·çš„æ•°æ®è½¬æ¢æˆæ•°å€¼
+data=avereps(data)#æœ‰çš„åŸºå› å‡ºç°è¿‡å¤šè¡Œï¼ŒæŠŠå‡ºç°å¤šè¡Œçš„geneå–å¹³å‡å€¼#
+data=data[rowMeans(data)>1,] #å»é™¤ä½è¡¨è¾¾çš„æ•°æ®#
+#write.csv(data,"D:/ç½‘ç«™æ•°æ®æ”¶é›†/è‚ç™Œå¤å‘æ•°æ®/GSE56545/å¤å‘VSé‚»è¿‘/åˆ é™¤ä½è¡¨è¾¾.csv",quote = F)
 data=round(data,0)
 
 
@@ -37,7 +37,7 @@ dge <- DGEList(counts=expr,group=group_list)
 dge$samples$lib.size <- colSums(dge$counts)
 dge <- calcNormFactors(dge)
 
-#Éú³É·Ö×éÇé¿öÊı¾İ¿ò
+#ç”Ÿæˆåˆ†ç»„æƒ…å†µæ•°æ®æ¡†
 design <- model.matrix(~0+condition)
 rownames(design)<-colnames(dge)
 colnames(design)<- levels(condition)
